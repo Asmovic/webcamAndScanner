@@ -41,6 +41,8 @@ save.addEventListener("click", () => {
 
     base64Data = base64image.replace(/^data:image\/jpeg;base64,/, "");
 
+    downloadImage(`${Date.now()}out.jpeg`, base64image);
+
     fetch("upload-photo", {
         method: "post",
         headers: {
@@ -63,4 +65,14 @@ save.addEventListener("click", () => {
 
 });
 
+
+// DOWNLOAD THE IMAGE.
+downloadImage = function (name, datauri) {
+    imageUrl.href = (datauri).slice(8);
+    imageUrl.innerHTML = (datauri).slice(8);
+    var a = document.createElement('a');
+    a.setAttribute('download', name);
+    a.setAttribute('href', datauri);
+    a.click();
+}
 
